@@ -769,7 +769,7 @@
       </div>
     </div>
     <div class="contact-form">
-      <form action="mailto:lwazi@betheproject.co.za" method="POST" enctype="text/plain">
+      <form id="contact-form">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name *</label>
@@ -831,6 +831,28 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const organisation = data.get('organisation') || '';
+    const role = data.get('role') || '';
+    const message = data.get('message') || '';
+
+    const subject = `BridgeEd enquiry from ${name}`;
+    const body =
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Organisation/School: ${organisation}\n` +
+      `Role: ${role}\n\n` +
+      `Message:\n${message}`;
+
+    const mailtoLink = `mailto:lwazi@betheproject.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  });
 </script>
 </body>
 </html>
