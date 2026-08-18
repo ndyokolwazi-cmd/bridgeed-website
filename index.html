@@ -770,6 +770,9 @@
     </div>
     <div class="contact-form">
       <form id="contact-form">
+        <input type="hidden" name="access_key" value="9f2edde4-c265-48ee-9268-6884ae193e50">
+        <input type="hidden" name="subject" value="New enquiry from BridgeEd website">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name *</label>
@@ -803,6 +806,7 @@
           <textarea id="message" name="message" placeholder="Share a bit of context about how you would like to get involved..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Send Message →</button>
+        <p id="form-status" style="margin-top:1rem; font-size:0.9rem; display:none;"></p>
       </form>
     </div>
   </div>
@@ -833,25 +837,44 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = contactForm.querySelector('.btn-submit');
+
   contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    const data = new FormData(contactForm);
-    const name = data.get('name') || '';
-    const email = data.get('email') || '';
-    const organisation = data.get('organisation') || '';
-    const role = data.get('role') || '';
-    const message = data.get('message') || '';
 
-    const subject = `BridgeEd enquiry from ${name}`;
-    const body =
-      `Name: ${name}\n` +
-      `Email: ${email}\n` +
-      `Organisation/School: ${organisation}\n` +
-      `Role: ${role}\n\n` +
-      `Message:\n${message}`;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    formStatus.style.display = 'none';
 
-    const mailtoLink = `mailto:lwazi@betheproject.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    const formData = new FormData(contactForm);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.success) {
+          formStatus.textContent = 'Thank you — your message has been sent. We will respond within 24 hours.';
+          formStatus.style.color = 'var(--teal)';
+          contactForm.reset();
+        } else {
+          formStatus.textContent = 'Something went wrong sending your message. Please email lwazi@betheproject.co.za directly.';
+          formStatus.style.color = '#b3261e';
+        }
+        formStatus.style.display = 'block';
+      })
+      .catch(() => {
+        formStatus.textContent = 'Something went wrong sending your message. Please email lwazi@betheproject.co.za directly.';
+        formStatus.style.color = '#b3261e';
+        formStatus.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      });
   });
 </script>
 </body>
