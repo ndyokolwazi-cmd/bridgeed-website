@@ -3,834 +3,554 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BridgeEd | Teacher Technology Empowerment Programme</title>
+<title>BridgeEd | Closing the Digital Gap in South African Classrooms</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal: #1A6B5A;
-    --teal-dark: #134d41;
-    --teal-light: #e8f4f0;
-    --gold: #C97D10;
-    --gold-light: #fdf3e3;
-    --white: #ffffff;
-    --off-white: #f8f8f6;
-    --grey-light: #f2f2ef;
-    --grey-mid: #999;
-    --grey-dark: #444;
-    --black: #1a1a1a;
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'Source Sans 3', sans-serif;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --teal: #1A6B5A;
+  --teal-dark: #0f4a3c;
+  --teal-mid: #2a8a74;
+  --gold: #D4870A;
+  --gold-light: #f5a623;
+  --white: #ffffff;
+  --cream: #faf9f6;
+  --grey: #6b7280;
+  --dark: #111827;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', sans-serif;
+}
+body { font-family: var(--sans); color: var(--dark); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.07); }
+.logo { font-family: var(--serif); font-size: 1.6rem; font-weight: 900; text-decoration: none; letter-spacing: -0.5px; }
+.logo .bridge { color: var(--teal-dark); }
+.logo .ed { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--grey); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-btn { background: var(--teal) !important; color: white !important; padding: 0.5rem 1.2rem; border-radius: 4px; }
+.nav-btn:hover { background: var(--teal-dark) !important; }
 
-  html { scroll-behavior: smooth; }
+/* HERO */
+.hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; background: var(--teal-dark); padding-top: 68px; }
+.hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1600&q=80&fit=crop&crop=center'); background-size: cover; background-position: center 30%; opacity: 0.2; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,58,46,0.98) 0%, rgba(26,107,90,0.88) 55%, rgba(10,58,46,0.65) 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 6% 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+.hero-label { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212,135,10,0.2); border: 1px solid rgba(212,135,10,0.5); color: var(--gold-light); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 2rem; }
+.hero-h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 900; line-height: 1.1; color: white; margin-bottom: 1.5rem; letter-spacing: -1px; }
+.hero-h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.78); margin-bottom: 2.5rem; max-width: 520px; font-weight: 300; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: white; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 2rem; border-radius: 4px; text-decoration: none; transition: all 0.25s; letter-spacing: 0.02em; border: 2px solid var(--gold); }
+.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,135,10,0.35); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.82); font-weight: 600; font-size: 0.95rem; padding: 0.9rem 1.5rem; border-radius: 4px; text-decoration: none; border: 2px solid rgba(255,255,255,0.28); transition: all 0.25s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: white; }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.12); }
+.hero-stat-num { font-family: var(--serif); font-size: 2.4rem; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 0.25rem; }
+.hero-stat-label { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+.hero-right { display: flex; flex-direction: column; gap: 1rem; }
+.hero-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11); backdrop-filter: blur(8px); border-radius: 12px; padding: 1.4rem; display: flex; align-items: flex-start; gap: 1rem; transition: background 0.25s; }
+.hero-card:hover { background: rgba(255,255,255,0.1); }
+.hero-card-icon { width: 44px; height: 44px; min-width: 44px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.hero-card-text h4 { font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.25rem; }
+.hero-card-text p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
 
-  body {
-    font-family: var(--sans);
-    color: var(--black);
-    background: var(--white);
-    font-size: 17px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
+/* STATEMENT */
+.statement { background: var(--cream); padding: 7rem 5%; text-align: center; }
+.statement-inner { max-width: 860px; margin: 0 auto; }
+.statement-quote { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.3; color: var(--teal-dark); margin-bottom: 1.5rem; }
+.statement-quote span { color: var(--gold); font-style: italic; }
+.statement-sub { font-size: 1.1rem; color: var(--grey); font-weight: 300; line-height: 1.75; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid #e8e8e5;
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-    backdrop-filter: blur(8px);
-  }
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    text-decoration: none;
-  }
-  .nav-logo span:first-child { color: var(--grey-dark); }
-  .nav-logo span:last-child { color: var(--gold); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--grey-dark);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--teal); }
-  .nav-cta {
-    background: var(--teal);
-    color: white !important;
-    padding: 0.45rem 1.1rem;
-    border-radius: 3px;
-  }
-  .nav-cta:hover { background: var(--teal-dark) !important; color: white !important; }
+/* PROBLEM */
+.problem { background: var(--dark); padding: 6rem 5%; }
+.problem-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+.problem h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: white; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+.problem-intro { font-size: 1.05rem; color: rgba(255,255,255,0.55); line-height: 1.75; font-weight: 300; }
+.problem-cards { display: flex; flex-direction: column; gap: 1rem; }
+.prob-card { background: rgba(255,255,255,0.04); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 1.3rem 1.5rem; }
+.prob-card h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.4rem; }
+.prob-card p { font-size: 0.87rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 64px;
-  }
-  .hero-left {
-    background: var(--teal);
-    padding: 7% 8% 7% 7%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.85);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.85rem;
-    border-radius: 2rem;
-    margin-bottom: 2rem;
-    width: fit-content;
-  }
-  .hero-badge::before { content: "🇿🇦"; font-size: 1rem; }
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(2.4rem, 4vw, 3.6rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: white;
-    margin-bottom: 1.5rem;
-  }
-  .hero-title em {
-    font-style: normal;
-    color: var(--gold);
-  }
-  .hero-sub {
-    color: rgba(255,255,255,0.8);
-    font-size: 1.1rem;
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 460px;
-  }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold);
-    color: white;
-    padding: 0.85rem 1.8rem;
-    border: none;
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s, transform 0.15s;
-    letter-spacing: 0.02em;
-  }
-  .btn-primary:hover { background: #a8660c; transform: translateY(-1px); }
-  .btn-ghost {
-    background: transparent;
-    color: rgba(255,255,255,0.9);
-    padding: 0.85rem 1.8rem;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+/* APPROACH */
+.approach { padding: 6rem 5%; background: white; }
+.approach-inner { max-width: 1200px; margin: 0 auto; }
+.approach-header { max-width: 700px; margin-bottom: 4rem; }
+.approach h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--teal-dark); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+.approach-sub { font-size: 1.05rem; color: var(--grey); font-weight: 300; line-height: 1.7; }
+.phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.phase { background: var(--cream); border-radius: 12px; padding: 2rem 1.5rem; border-top: 4px solid transparent; transition: all 0.25s; }
+.phase:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+.phase-1 { border-top-color: var(--teal); }
+.phase-2 { border-top-color: var(--teal-mid); }
+.phase-3 { border-top-color: var(--gold); }
+.phase-4 { border-top-color: var(--gold-light); }
+.phase-num { font-family: var(--serif); font-size: 3.5rem; font-weight: 900; color: rgba(0,0,0,0.06); line-height: 1; margin-bottom: 0.75rem; }
+.phase h3 { font-size: 1rem; font-weight: 700; color: var(--teal-dark); margin-bottom: 0.5rem; }
+.phase-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(212,135,10,0.1); padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
+.phase p { font-size: 0.87rem; color: var(--grey); line-height: 1.65; }
 
-  .hero-right {
-    background: var(--off-white);
-    padding: 7% 7% 7% 6%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-stat-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 2rem;
-  }
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
-  .stat-item { padding: 1.5rem; background: white; border-left: 3px solid var(--teal); }
-  .stat-number {
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--teal);
-    line-height: 1;
-    margin-bottom: 0.35rem;
-  }
-  .stat-desc { font-size: 0.85rem; color: var(--grey-dark); font-weight: 400; line-height: 1.4; }
-  .hero-quote {
-    background: white;
-    border-left: 4px solid var(--gold);
-    padding: 1.4rem 1.6rem;
-    font-size: 0.95rem;
-    color: var(--grey-dark);
-    font-style: italic;
-    line-height: 1.65;
-  }
+/* DAYS */
+.days { background: var(--teal-dark); padding: 6rem 5%; }
+.days-inner { max-width: 1200px; margin: 0 auto; }
+.days h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: white; letter-spacing: -0.5px; margin-bottom: 3.5rem; }
+.days-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.day-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem 1.2rem; transition: background 0.25s; }
+.day-card:hover { background: rgba(255,255,255,0.1); }
+.day-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+.day-card h4 { font-size: 0.92rem; font-weight: 700; color: white; margin-bottom: 1rem; line-height: 1.3; }
+.day-items { list-style: none; }
+.day-items li { font-size: 0.8rem; color: rgba(255,255,255,0.5); padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); line-height: 1.4; display: flex; gap: 0.5rem; align-items: flex-start; }
+.day-items li::before { content: "→"; color: var(--gold); flex-shrink: 0; }
 
-  /* SECTIONS */
-  section { padding: 6rem 7%; }
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--teal-dark);
-    margin-bottom: 1.5rem;
-  }
-  .section-intro {
-    font-size: 1.05rem;
-    color: var(--grey-dark);
-    max-width: 640px;
-    margin-bottom: 3rem;
-    font-weight: 300;
-    line-height: 1.75;
-  }
+/* SERVE */
+.serve { padding: 6rem 5%; background: white; }
+.serve-inner { max-width: 1200px; margin: 0 auto; }
+.serve h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--teal-dark); letter-spacing: -0.5px; margin-bottom: 1rem; }
+.serve-sub { font-size: 1.05rem; color: var(--grey); font-weight: 300; margin-bottom: 3.5rem; max-width: 600px; }
+.serve-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.serve-card { border: 2px solid #e8e8e5; border-radius: 12px; overflow: hidden; transition: all 0.25s; }
+.serve-card:hover { border-color: var(--teal); transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+.serve-card-top { height: 190px; display: flex; align-items: flex-end; padding: 1.5rem; position: relative; }
+.serve-card-top.rural { background: linear-gradient(160deg, #0f4a3c, #1A6B5A); }
+.serve-card-top.township { background: linear-gradient(160deg, #1a3a6b, #2a5aa8); }
+.serve-card-top.any { background: linear-gradient(160deg, #4a3c0f, #8a6a1a); }
+.serve-card-emoji { font-size: 4rem; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.25; }
+.serve-card-top h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; color: white; position: relative; z-index: 1; line-height: 1.2; }
+.serve-card-body { padding: 1.5rem; }
+.serve-card-body p { font-size: 0.9rem; color: var(--grey); line-height: 1.65; }
 
-  /* PROBLEM */
-  .problem { background: var(--white); }
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5px;
-    background: #ddd;
-    border: 1.5px solid #ddd;
-    margin-top: 3rem;
-  }
-  .problem-item {
-    background: white;
-    padding: 2rem 2rem 2rem 1.8rem;
-    border-left: 4px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .problem-item:hover { border-color: var(--teal); }
-  .problem-item h3 {
-    font-family: var(--sans);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 0.75rem;
-  }
-  .problem-item p { font-size: 0.95rem; color: var(--grey-dark); line-height: 1.65; }
+/* ZERO-COST */
+.zero-cost { background: var(--gold); padding: 5rem 5%; text-align: center; }
+.zero-cost h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: white; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 1rem; }
+.zero-cost p { font-size: 1.1rem; color: rgba(255,255,255,0.85); font-weight: 300; max-width: 580px; margin: 0 auto; line-height: 1.7; }
 
-  /* APPROACH */
-  .approach { background: var(--teal); }
-  .approach .section-title { color: white; }
-  .approach .section-intro { color: rgba(255,255,255,0.75); }
-  .approach .section-label { color: rgba(255,255,255,0.5); }
-  .phases {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .phase {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 1.75rem 1.4rem;
-    position: relative;
-    transition: background 0.2s;
-  }
-  .phase:hover { background: rgba(255,255,255,0.13); }
-  .phase-number {
-    font-family: var(--serif);
-    font-size: 3rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.12);
-    line-height: 1;
-    margin-bottom: 0.75rem;
-  }
-  .phase-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .phase-duration {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 0.75rem;
-    font-weight: 300;
-  }
-  .phase p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+/* FUNDING */
+.funding { background: var(--cream); padding: 6rem 5%; }
+.funding-inner { max-width: 1200px; margin: 0 auto; }
+.funding-header { max-width: 680px; margin-bottom: 3.5rem; }
+.funding h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--teal-dark); letter-spacing: -0.5px; margin-bottom: 1rem; line-height: 1.2; }
+.funding-sub { font-size: 1.05rem; color: var(--grey); font-weight: 300; line-height: 1.7; }
+.funding-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.fund-card { background: white; border-radius: 10px; padding: 1.75rem; border: 1px solid #eae9e6; transition: all 0.25s; }
+.fund-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.fund-icon { font-size: 2rem; margin-bottom: 1rem; }
+.fund-card h4 { font-size: 1rem; font-weight: 700; color: var(--teal-dark); margin-bottom: 0.5rem; }
+.fund-card p { font-size: 0.87rem; color: var(--grey); line-height: 1.65; }
 
-  /* TRAINING */
-  .training { background: var(--off-white); }
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    margin-top: 2.5rem;
-  }
-  .day-card {
-    background: white;
-    border-top: 4px solid var(--teal);
-    padding: 1.5rem 1.2rem;
-  }
-  .day-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.4rem;
-  }
-  .day-title {
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--teal-dark);
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .day-items { list-style: none; }
-  .day-items li {
-    font-size: 0.82rem;
-    color: var(--grey-dark);
-    padding: 0.3rem 0;
-    border-bottom: 1px solid var(--grey-light);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    line-height: 1.4;
-  }
-  .day-items li::before { content: "→"; color: var(--teal); font-size: 0.75rem; margin-top: 2px; flex-shrink: 0; }
+/* CTA */
+.cta { background: var(--teal-dark); padding: 7rem 5%; text-align: center; }
+.cta-inner { max-width: 720px; margin: 0 auto; }
+.cta h2 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: white; letter-spacing: -0.5px; margin-bottom: 1.25rem; margin-top: 1rem; line-height: 1.2; }
+.cta-sub { font-size: 1.05rem; color: rgba(255,255,255,0.62); font-weight: 300; line-height: 1.7; margin-bottom: 2.5rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-  /* WHO WE SERVE */
-  .serve { background: white; }
-  .serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-  .serve-card {
-    border: 1.5px solid #e8e8e5;
-    padding: 2rem 1.8rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .serve-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--teal);
-  }
-  .serve-card:hover { border-color: var(--teal); }
-  .serve-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .serve-card h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--teal-dark); margin-bottom: 0.75rem; }
-  .serve-card p { font-size: 0.9rem; color: var(--grey-dark); line-height: 1.65; }
+/* CONTACT */
+.contact { padding: 6rem 5%; background: white; }
+.contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: var(--teal-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
+.contact-desc { font-size: 1rem; color: var(--grey); line-height: 1.75; margin-bottom: 2rem; font-weight: 300; }
+.contact-details { list-style: none; }
+.contact-details li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid #f0f0ed; font-size: 0.95rem; color: var(--dark); }
+.contact-details .icon { color: var(--teal); flex-shrink: 0; margin-top: 2px; width: 20px; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--dark); letter-spacing: 0.04em; margin-bottom: 0.4rem; text-transform: uppercase; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1.5px solid #e0e0dc; border-radius: 6px; font-family: var(--sans); font-size: 0.95rem; color: var(--dark); background: white; transition: border-color 0.2s, box-shadow 0.2s; outline: none; appearance: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(26,107,90,0.1); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit { background: var(--teal); color: white; border: none; padding: 0.9rem 2.5rem; border-radius: 4px; font-family: var(--sans); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.25s; letter-spacing: 0.03em; display: inline-flex; align-items: center; gap: 0.5rem; }
+.form-submit:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,107,90,0.25); }
 
-  /* FUNDED */
-  .funded { background: var(--teal-light); }
-  .funded-intro-block {
-    background: var(--teal);
-    padding: 2.5rem 3rem;
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  .funded-intro-block h2 {
-    font-family: var(--serif);
-    font-size: 2rem;
-    color: white;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  .funded-intro-block p { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 460px; line-height: 1.7; }
-  .funders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-  .funder-card { background: white; padding: 1.75rem; }
-  .funder-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-  .funder-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--teal-dark); margin-bottom: 0.5rem; }
-  .funder-card p { font-size: 0.85rem; color: var(--grey-dark); line-height: 1.6; }
+/* FOOTER */
+footer { background: var(--dark); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo .bridge { color: #9ca3af; }
+.footer-logo .ed { color: var(--gold); }
+.footer-copy { font-size: 0.82rem; color: #6b7280; }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links a { font-size: 0.82rem; color: #6b7280; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
 
-  /* CONTACT */
-  .contact { background: white; }
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-  .contact-info h2 {
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    color: var(--teal-dark);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .contact-info p { color: var(--grey-dark); font-size: 0.95rem; line-height: 1.75; margin-bottom: 2rem; }
-  .contact-details { list-style: none; margin-bottom: 2rem; }
-  .contact-details li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--grey-light);
-    font-size: 0.95rem;
-    color: var(--grey-dark);
-  }
-  .contact-details li strong { color: var(--teal); min-width: 24px; text-align: center; }
-  .contact-who { margin-top: 1.5rem; }
-  .who-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-mid); margin-bottom: 0.75rem; }
-  .who-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .who-tag {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.75rem;
-    border: 1.5px solid var(--teal);
-    color: var(--teal);
-    border-radius: 2rem;
-    font-weight: 600;
-  }
-
-  .contact-form { }
-  .form-group { margin-bottom: 1.25rem; }
-  .form-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--grey-dark);
-    margin-bottom: 0.4rem;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1.5px solid #ddd;
-    border-radius: 2px;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    color: var(--black);
-    background: var(--off-white);
-    transition: border-color 0.2s;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--teal); background: white; }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .btn-submit {
-    background: var(--teal);
-    color: white;
-    padding: 0.9rem 2rem;
-    border: none;
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    letter-spacing: 0.03em;
-    transition: background 0.2s;
-    margin-top: 0.5rem;
-  }
-  .btn-submit:hover { background: var(--teal-dark); }
-
-  /* FOOTER */
-  footer {
-    background: var(--teal-dark);
-    padding: 2.5rem 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; }
-  .footer-logo span:first-child { color: rgba(255,255,255,0.7); }
-  .footer-logo span:last-child { color: var(--gold); }
-  .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.2rem; }
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: white; }
-  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
-
-  /* FADE IN */
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* RESPONSIVE */
-  @media (max-width: 960px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { padding: 4rem 7%; }
-    .phases { grid-template-columns: 1fr 1fr; }
-    .days-grid { grid-template-columns: 1fr 1fr; }
-    .serve-grid { grid-template-columns: 1fr 1fr; }
-    .funders-grid { grid-template-columns: 1fr 1fr; }
-    .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
-    .funded-intro-block { flex-direction: column; align-items: flex-start; }
-  }
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .problem-grid { grid-template-columns: 1fr; }
-    .phases { grid-template-columns: 1fr; }
-    .days-grid { grid-template-columns: 1fr; }
-    .serve-grid { grid-template-columns: 1fr; }
-    .funders-grid { grid-template-columns: 1fr; }
-    .stat-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .footer { flex-direction: column; align-items: flex-start; }
-  }
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .problem-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .phases { grid-template-columns: 1fr 1fr; }
+  .days-grid { grid-template-columns: 1fr 1fr; }
+  .serve-cards { grid-template-columns: 1fr; }
+  .funding-grid { grid-template-columns: 1fr 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .nav-links { display: none; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+}
+@media (max-width: 600px) {
+  .phases { grid-template-columns: 1fr; }
+  .days-grid { grid-template-columns: 1fr; }
+  .funding-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo"><span>Bridge</span><span>Ed</span></a>
+  <a href="#" class="logo"><span class="bridge">Bridge</span><span class="ed">Ed</span></a>
   <ul class="nav-links">
     <li><a href="#programme">Programme</a></li>
-    <li><a href="#training">Training</a></li>
-    <li><a href="#funders">Funders</a></li>
-    <li><a href="#contact" class="nav-cta">Get Involved</a></li>
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#funding">Funding</a></li>
+    <li><a href="#contact" class="nav-btn">Partner With Us</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-badge">South Africa · Rural & Township Schools</div>
-    <h1 class="hero-title">Closing the <em>Digital Gap</em> in South African Classrooms</h1>
-    <p class="hero-sub">We train teachers at public schools in rural and township communities across South Africa to master myEncore — South Africa's leading CAPS-aligned school management platform — completely free to the school, anywhere in the country.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Partner With Us</a>
-      <a href="#programme" class="btn-ghost">See the Programme</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <p class="hero-stat-label">Programme at a Glance</p>
-    <div class="stat-grid">
-      <div class="stat-item">
-        <div class="stat-number">3,000+</div>
-        <div class="stat-desc">Teachers targeted in Year 1</div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-label">&#127462;&#127467; South Africa &middot; Rural &amp; Township Schools</div>
+      <h1 class="hero-h1">Every teacher deserves to <em>teach,</em> not drown in paperwork.</h1>
+      <p class="hero-sub">BridgeEd trains teachers in Quintile 1&ndash;3 public schools to master myEncore &mdash; SA's leading CAPS-aligned school management platform &mdash; completely free to the school.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Partner With Us &rarr;</a>
+        <a href="#programme" class="btn-ghost">See the Programme</a>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-desc">Provinces — Western Cape, Eastern Cape, KZN</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">R0</div>
-        <div class="stat-desc">Cost to the school. Every time.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">4</div>
-        <div class="stat-desc">Months from setup to certified school</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">Days on-site per school</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">R0</div>
+          <div class="hero-stat-label">Cost to the school</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4</div>
+          <div class="hero-stat-label">Months to certification</div>
+        </div>
       </div>
     </div>
-    <div class="hero-quote">
-      "The problem in South African public education is not a technology problem. The tools exist. The gap is the human bridge between the software and the classroom."
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-icon">&#128203;</div>
+        <div class="hero-card-text">
+          <h4>CAPS-Aligned Reports. Automatically.</h4>
+          <p>No more manual report cards. myEncore generates fully compliant DBE reports from captured marks.</p>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">&#128241;</div>
+        <div class="hero-card-text">
+          <h4>Works on Any Smartphone</h4>
+          <p>No special hardware needed. Android, iOS, or Huawei &mdash; if a teacher has a phone, they can use myEncore.</p>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">&#127757;</div>
+        <div class="hero-card-text">
+          <h4>Trained in Their Language</h4>
+          <p>Facilitated in isiXhosa, isiZulu, Sesotho, and English. Technology that actually makes sense.</p>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">&#127942;</div>
+        <div class="hero-card-text">
+          <h4>Certified myEncore Schools</h4>
+          <p>Every teacher earns a recognised certificate. Every school earns official myEncore Certified status.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="problem fade-in" id="problem">
-  <p class="section-label">The Problem We Are Solving</p>
-  <h2 class="section-title">Teachers want to succeed.<br>They just need the right support.</h2>
-  <p class="section-intro">The technology to transform school administration exists and most schools can afford it. The structured, sustained training to make it work in under-resourced communities does not — until now.</p>
-  <div class="problem-grid">
-    <div class="problem-item">
-      <h3>CAPS Compliance</h3>
-      <p>Most rural teachers are producing DBE reports manually, with errors that put school compliance at risk. The tools to fix this already exist. What is missing is the training.</p>
-    </div>
-    <div class="problem-item">
-      <h3>Digital Skills Gap</h3>
-      <p>The majority of rural and township teachers have never received hands-on training on a school management platform. Not once, in their entire career.</p>
-    </div>
-    <div class="problem-item">
-      <h3>Parent Communication</h3>
-      <p>Schools in townships and rural communities have no reliable channel to communicate with parents about learner progress, attendance or school announcements.</p>
-    </div>
-    <div class="problem-item">
-      <h3>Administrative Burden</h3>
-      <p>Hours spent weekly on paperwork that a proper system would reduce to minutes. That time belongs in the classroom, not on a manual register.</p>
-    </div>
+<section class="statement">
+  <div class="statement-inner">
+    <p class="statement-quote">&ldquo;The gap is not the tool. The gap is the <span>human support</span> required to implement it in schools that have been left behind.&rdquo;</p>
+    <p class="statement-sub">The technology to transform school management already exists. What has always been missing is someone willing to walk through the door and make sure it sticks.</p>
   </div>
 </section>
 
-<!-- APPROACH -->
-<section class="approach fade-in" id="programme">
-  <p class="section-label">Our Approach</p>
-  <h2 class="section-title">A four-phase programme.<br>Built for lasting change.</h2>
-  <p class="section-intro">We do not run one-day workshops and leave. We go on-site, we train in the teachers' home languages, and we stay for the full implementation cycle until the school can run independently.</p>
-  <div class="phases">
-    <div class="phase">
-      <div class="phase-number">1</div>
-      <div class="phase-title">Foundation</div>
-      <div class="phase-duration">5 days on-site</div>
-      <p>All teachers. At the school. Hands-on training in their preferred language. No remote sessions, no Zoom calls.</p>
-    </div>
-    <div class="phase">
-      <div class="phase-number">2</div>
-      <div class="phase-title">Consolidation</div>
-      <div class="phase-duration">1 to 2 days, 3 weeks later</div>
-      <p>We return to address the real questions that only arise once teachers start using the system in practice.</p>
-    </div>
-    <div class="phase">
-      <div class="phase-number">3</div>
-      <div class="phase-title">Champion Support</div>
-      <div class="phase-duration">Monthly for 3 months</div>
-      <p>Ongoing support for the school's identified champion teacher via WhatsApp and regular check-in sessions.</p>
-    </div>
-    <div class="phase">
-      <div class="phase-number">4</div>
-      <div class="phase-title">Certification</div>
-      <div class="phase-duration">End of Month 4</div>
-      <p>Practical assessment. Recognised certificates for every qualifying teacher. Official myEncore Certified School status.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TRAINING BREAKDOWN -->
-<section class="training fade-in" id="training">
-  <p class="section-label">5-Day Training Breakdown</p>
-  <h2 class="section-title">Every day. Every module.<br>Every teacher.</h2>
-  <p class="section-intro">Training builds progressively, from basic navigation to full CAPS compliance and parent communication. No prior technology experience required.</p>
-  <div class="days-grid">
-    <div class="day-card">
-      <div class="day-label">Day 1</div>
-      <div class="day-title">Platform Setup & Navigation</div>
-      <ul class="day-items">
-        <li>Device setup and login</li>
-        <li>School profile configuration</li>
-        <li>Dashboard navigation</li>
-        <li>Teacher profiles and roles</li>
-      </ul>
-    </div>
-    <div class="day-card">
-      <div class="day-label">Day 2</div>
-      <div class="day-title">Attendance & Class Management</div>
-      <ul class="day-items">
-        <li>Digital attendance taking</li>
-        <li>Timetable setup</li>
-        <li>Class and subject linking</li>
-        <li>Yard duty and activity tools</li>
-      </ul>
-    </div>
-    <div class="day-card">
-      <div class="day-label">Day 3</div>
-      <div class="day-title">Marks & CAPS Tracking</div>
-      <ul class="day-items">
-        <li>Mark capture and weighting</li>
-        <li>CAPS curriculum alignment</li>
-        <li>Learner progress views</li>
-        <li>Intervention flags</li>
-      </ul>
-    </div>
-    <div class="day-card">
-      <div class="day-label">Day 4</div>
-      <div class="day-title">Reports & Parent Communication</div>
-      <ul class="day-items">
-        <li>Automated report generation</li>
-        <li>Parent portal activation</li>
-        <li>Homework and announcements</li>
-        <li>Communication history</li>
-      </ul>
-    </div>
-    <div class="day-card">
-      <div class="day-label">Day 5</div>
-      <div class="day-title">Compliance & Admin</div>
-      <ul class="day-items">
-        <li>SASAMS sync and validation</li>
-        <li>DBE compliance checks</li>
-        <li>Discipline and merit tools</li>
-        <li>Champion identification</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- WHO WE SERVE -->
-<section class="serve fade-in">
-  <p class="section-label">Who We Serve</p>
-  <h2 class="section-title">Reaching the schools<br>others cannot reach.</h2>
-  <p class="section-intro">BridgeEd targets Quintile 1 to 3 public schools in communities where the gap between available technology and classroom reality is widest.</p>
-  <div class="serve-grid">
-    <div class="serve-card">
-      <div class="serve-icon">🏫</div>
-      <h3>Rural Schools</h3>
-      <p>BridgeEd works with any Quintile 1 to 3 public school in South Africa. Distance is not a barrier to quality teacher development.</p>
-    </div>
-    <div class="serve-card">
-      <div class="serve-icon">🏙️</div>
-      <h3>Township Schools</h3>
-      <p>Township schools deserve the same digital infrastructure as Model C schools. Every community deserves access to the same quality of training, regardless of where it is.</p>
-    </div>
-    <div class="serve-card">
-      <div class="serve-icon">📚</div>
-      <h3>Under-Resourced Public Schools</h3>
-      <p>Any Quintile 1 to 3 public school with limited digital support and a principal committed to change. If the will is there, we provide the skill.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FUNDED -->
-<section class="funded fade-in" id="funders">
-  <div class="funded-intro-block">
+<section class="problem" id="problem">
+  <div class="problem-inner">
     <div>
-      <p class="section-label" style="color:rgba(255,255,255,0.5)">How It's Funded</p>
-      <h2>Schools pay nothing.<br>Change-makers fund the change.</h2>
+      <span class="section-label">The Problem We&rsquo;re Solving</span>
+      <h2>South Africa&rsquo;s schools are falling behind. Not because teachers don&rsquo;t care.</h2>
+      <p class="problem-intro">Most township and rural schools manage everything on paper. Attendance registers, mark sheets, report cards &mdash; all done by hand. Teachers spend hours on admin that should take minutes. And when a teacher leaves, years of learner data walks out the door with them.</p>
     </div>
-    <p>We actively partner with corporates, foundations and government programmes to ensure every school receives world-class training at zero cost.</p>
-  </div>
-  <div class="funders-grid">
-    <div class="funder-card">
-      <div class="funder-icon">🏢</div>
-      <h3>Corporate CSI</h3>
-      <p>South African companies with B-BBEE obligations fund teacher development as part of their Social and Enterprise Development commitments. Education is the most fundable CSI category.</p>
-    </div>
-    <div class="funder-card">
-      <div class="funder-icon">📋</div>
-      <h3>ETDP SETA</h3>
-      <p>BridgeEd is pursuing ETDP SETA accreditation, enabling schools and districts to access SETA funding for teacher training that counts toward CPD requirements.</p>
-    </div>
-    <div class="funder-card">
-      <div class="funder-icon">🌍</div>
-      <h3>Development Funders</h3>
-      <p>We partner with education-focused foundations and international development organisations committed to closing the technology gap in South African schools.</p>
-    </div>
-    <div class="funder-card">
-      <div class="funder-icon">📱</div>
-      <h3>myEncore Partnership</h3>
-      <p>As an authorised myEncore training partner, we work with the platform team to co-fund access to schools in communities they cannot currently reach directly.</p>
-    </div>
-    <div class="funder-card">
-      <div class="funder-icon">🤝</div>
-      <h3>NGO and Foundation Grants</h3>
-      <p>We actively apply for education grants from SA-focused foundations including Zenex, Ikusasa and the Michael and Susan Dell Foundation.</p>
-    </div>
-    <div class="funder-card">
-      <div class="funder-icon">🎯</div>
-      <h3>BackaBuddy Campaigns</h3>
-      <p>School-specific crowdfunding campaigns invite community members, alumni and parents to directly sponsor digital training for their local school.</p>
+    <div class="problem-cards">
+      <div class="prob-card">
+        <h4>CAPS Compliance is Broken</h4>
+        <p>Most rural teachers are SASAMS-compliant in name only. Errors are widespread and DBE compliance is at risk.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Admin is Stealing Classroom Time</h4>
+        <p>Hours spent on paperwork every week are hours that should be spent teaching. Burnout follows.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Parents Are in the Dark</h4>
+        <p>Families in townships and rural areas receive almost no real-time information about their child&rsquo;s progress.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Learner Data Dies with Staff Changes</h4>
+        <p>No continuity between grades, terms, or teachers when staff moves. Every year starts from zero.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact fade-in" id="contact">
-  <div class="contact-wrap">
-    <div class="contact-info">
-      <p class="section-label">Get Involved</p>
-      <h2>Ready to close the gap?</h2>
-      <p>Whether you are a funder, a school principal, a circuit manager or an organisation looking for a credible education impact partner — we want to hear from you. We respond within 24 hours.</p>
-      <ul class="contact-details">
-        <li><strong>✉</strong> lwazi@betheproject.co.za</li>
-        <li><strong>📞</strong> 071 595 9164</li>
-        <li><strong>📍</strong> George, Western Cape · Serving schools across South Africa</li>
-      </ul>
-      <div class="contact-who">
-        <p class="who-label">I am reaching out as a</p>
-        <div class="who-tags">
-          <span class="who-tag">Corporate Funder</span>
-          <span class="who-tag">Foundation</span>
-          <span class="who-tag">School Principal</span>
-          <span class="who-tag">Circuit Manager</span>
-          <span class="who-tag">Training Partner</span>
+<section class="approach" id="programme">
+  <div class="approach-inner">
+    <div class="approach-header">
+      <span class="section-label">Our Approach</span>
+      <h2>We don&rsquo;t do one-day workshops. We stay until the school works.</h2>
+      <p class="approach-sub">A four-phase model built for lasting adoption &mdash; not just exposure. Every phase is designed so that when BridgeEd leaves, the school stands on its own.</p>
+    </div>
+    <div class="phases">
+      <div class="phase phase-1">
+        <div class="phase-num">01</div>
+        <div class="phase-tag">Week 1&ndash;2</div>
+        <h3>Foundation Training</h3>
+        <p>5-day on-site workshop for every teacher. At the school. In their language. Hands-on from day one.</p>
+      </div>
+      <div class="phase phase-2">
+        <div class="phase-num">02</div>
+        <div class="phase-tag">Week 4</div>
+        <h3>Consolidation Visit</h3>
+        <p>We return 3 weeks later to fix what real practice exposed. The questions that only come up once you&rsquo;re doing it.</p>
+      </div>
+      <div class="phase phase-3">
+        <div class="phase-num">03</div>
+        <div class="phase-tag">Month 3</div>
+        <h3>Champion Support</h3>
+        <p>Monthly check-ins with the school&rsquo;s identified champion. WhatsApp support channel. No teacher left behind.</p>
+      </div>
+      <div class="phase phase-4">
+        <div class="phase-num">04</div>
+        <div class="phase-tag">Month 4</div>
+        <h3>Certification</h3>
+        <p>Practical assessment. Recognised certificates for every qualifying teacher. Official myEncore Certified School status.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="days">
+  <div class="days-inner">
+    <span class="section-label">5-Day Training Breakdown</span>
+    <h2>Every day. Every module. Every teacher.</h2>
+    <div class="days-grid">
+      <div class="day-card">
+        <span class="day-label">Day 1</span>
+        <h4>Platform Setup &amp; Navigation</h4>
+        <ul class="day-items">
+          <li>Device setup &amp; login</li>
+          <li>School profile configuration</li>
+          <li>Navigating the dashboard</li>
+          <li>Teacher profiles &amp; roles</li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <span class="day-label">Day 2</span>
+        <h4>Attendance &amp; Class Management</h4>
+        <ul class="day-items">
+          <li>Digital attendance taking</li>
+          <li>Timetable setup</li>
+          <li>Class &amp; subject linking</li>
+          <li>Yard duty &amp; activity tools</li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <span class="day-label">Day 3</span>
+        <h4>Marks &amp; CAPS Tracking</h4>
+        <ul class="day-items">
+          <li>Mark capture &amp; weighting</li>
+          <li>CAPS curriculum alignment</li>
+          <li>Learner progress views</li>
+          <li>Intervention flags</li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <span class="day-label">Day 4</span>
+        <h4>Reports &amp; Parent Comms</h4>
+        <ul class="day-items">
+          <li>Automated report generation</li>
+          <li>Parent portal activation</li>
+          <li>Homework &amp; announcements</li>
+          <li>Communication history</li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <span class="day-label">Day 5</span>
+        <h4>Compliance &amp; Admin</h4>
+        <ul class="day-items">
+          <li>SASAMS sync &amp; validation</li>
+          <li>DBE compliance checks</li>
+          <li>Discipline &amp; merit tools</li>
+          <li>Champion identification</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="serve" id="serve">
+  <div class="serve-inner">
+    <span class="section-label">Who We Serve</span>
+    <h2>Reaching the schools others can&rsquo;t reach.</h2>
+    <p class="serve-sub">If your school is under-resourced, overlooked, and led by a principal who wants more for their teachers &mdash; BridgeEd was built for you.</p>
+    <div class="serve-cards">
+      <div class="serve-card">
+        <div class="serve-card-top rural">
+          <div class="serve-card-emoji">&#127983;</div>
+          <h3>Rural Schools</h3>
+        </div>
+        <div class="serve-card-body">
+          <p>We travel to schools in deep rural Eastern Cape, KwaZulu-Natal, and Western Cape. Distance is not a barrier to quality teacher development.</p>
+        </div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-card-top township">
+          <div class="serve-card-emoji">&#127961;&#65039;</div>
+          <h3>Township Schools</h3>
+        </div>
+        <div class="serve-card-body">
+          <p>Kasi schools deserve the same digital infrastructure as Model C schools. We bring the same standard of training to every community.</p>
+        </div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-card-top any">
+          <div class="serve-card-emoji">&#128218;</div>
+          <h3>Any Quintile 1&ndash;3 School</h3>
+        </div>
+        <div class="serve-card-body">
+          <p>Any public school with limited digital support and a principal committed to change. If the will is there, we provide the skill.</p>
         </div>
       </div>
     </div>
-    <div class="contact-form">
-      <form action="mailto:lwazi@betheproject.co.za" method="POST" enctype="text/plain">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="Your full name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-          </div>
+  </div>
+</section>
+
+<section class="zero-cost">
+  <h2>Schools pay nothing.<br>Change-makers fund the change.</h2>
+  <p>We partner with corporates, foundations, and government programmes so that every school gets world-class training at zero cost to them.</p>
+</section>
+
+<section class="funding" id="funding">
+  <div class="funding-inner">
+    <div class="funding-header">
+      <span class="section-label">How It&rsquo;s Funded</span>
+      <h2>Multiple funding streams. Zero cost to schools.</h2>
+      <p class="funding-sub">BridgeEd is designed to be funded sustainably through a blend of corporate CSI, government channels, and development partnerships.</p>
+    </div>
+    <div class="funding-grid">
+      <div class="fund-card">
+        <div class="fund-icon">&#127970;</div>
+        <h4>Corporate CSI</h4>
+        <p>South African companies with B-BBEE obligations fund teacher development as part of their Social and Enterprise Development commitments. Education is the most fundable CSI category.</p>
+      </div>
+      <div class="fund-card">
+        <div class="fund-icon">&#128203;</div>
+        <h4>ETDP SETA</h4>
+        <p>Our programme is working toward ETDP SETA accreditation, enabling schools and districts to access SETA funding for teacher training that counts toward CPD requirements.</p>
+      </div>
+      <div class="fund-card">
+        <div class="fund-icon">&#127757;</div>
+        <h4>Development Funders</h4>
+        <p>We partner with education-focused foundations and international development organisations committed to closing the digital divide in South African schools.</p>
+      </div>
+      <div class="fund-card">
+        <div class="fund-icon">&#128241;</div>
+        <h4>myEncore Partnership</h4>
+        <p>As an authorised myEncore training partner, we work with the platform&rsquo;s team to co-fund access to schools in communities they cannot currently reach directly.</p>
+      </div>
+      <div class="fund-card">
+        <div class="fund-icon">&#129309;</div>
+        <h4>NGO &amp; Foundation Grants</h4>
+        <p>We actively apply for education grants from SA-focused foundations including Zenex, Ikusasa, and the Michael &amp; Susan Dell Foundation.</p>
+      </div>
+      <div class="fund-card">
+        <div class="fund-icon">&#127919;</div>
+        <h4>BackaBuddy Campaigns</h4>
+        <p>School-specific crowdfunding campaigns invite community members, alumni, and parents to directly sponsor digital training for their local school.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-inner">
+    <span class="section-label">Get Involved</span>
+    <h2>Ready to close the gap?</h2>
+    <p class="cta-sub">Whether you&rsquo;re a funder, a school principal, a circuit manager, or an organisation looking for a credible education impact partner &mdash; we want to hear from you.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-primary">Contact Us Today &rarr;</a>
+      <a href="#programme" class="btn-ghost">Read the Programme</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Let&rsquo;s start a conversation.</h2>
+      <p class="contact-desc">Whether you want to fund a school, refer a school, become a training partner, or bring this programme to your district &mdash; reach out and we&rsquo;ll respond within 24 hours.</p>
+      <ul class="contact-details">
+        <li><span class="icon">&#9993;</span><span>lwazi@betheproject.co.za</span></li>
+        <li><span class="icon">&#128222;</span><span>071 595 9164</span></li>
+        <li><span class="icon">&#128205;</span><span>Based in George, Western Cape &middot; Serving all Quintile 1&ndash;3 public schools nationally</span></li>
+        <li><span class="icon">&#127760;</span><span>bridgeed.co.za</span></li>
+      </ul>
+    </div>
+    <div class="contact-right">
+      <form action="mailto:lwazi@betheproject.co.za" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label>Your full name *</label>
+          <input type="text" name="name" placeholder="e.g. Nomsa Dlamini" required>
         </div>
         <div class="form-group">
-          <label for="org">Organisation or School Name</label>
-          <input type="text" id="org" name="organisation" placeholder="Organisation or school name">
+          <label>Email address *</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
-          <label for="role">I am a *</label>
-          <select id="role" name="role" required>
+          <label>Organisation / School name</label>
+          <input type="text" name="organisation" placeholder="e.g. Capitec Foundation">
+        </div>
+        <div class="form-group">
+          <label>I am a&hellip; *</label>
+          <select name="role" required>
             <option value="" disabled selected>Select your role</option>
-            <option>Corporate CSI / Funder</option>
-            <option>Foundation Representative</option>
+            <option>Corporate CSI or Foundation Funder</option>
             <option>School Principal</option>
             <option>Circuit or District Manager</option>
-            <option>Education Department Official</option>
-            <option>Training Partner</option>
-            <option>Community Member</option>
+            <option>Teacher</option>
+            <option>Training Partner or Facilitator</option>
             <option>Other</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Tell us about your school, organisation or interest</label>
-          <textarea id="message" name="message" placeholder="Share a bit of context about how you would like to get involved..."></textarea>
+          <label>Tell us about your interest</label>
+          <textarea name="message" placeholder="Share as much or as little as you like..."></textarea>
         </div>
-        <button type="submit" class="btn-submit">Send Message →</button>
+        <button type="submit" class="form-submit">Send Message &rarr;</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-logo"><span>Bridge</span><span>Ed</span></div>
-    <div class="footer-tagline">A programme of Be The Project (Pty) Ltd · Reg: 2013/166136/07 · B-BBEE Level 1</div>
-  </div>
+  <a href="#" class="logo footer-logo"><span class="bridge">Bridge</span><span class="ed">Ed</span></a>
+  <p class="footer-copy">&copy; 2025 BridgeEd &middot; Teacher Digital Training Programme &middot; South Africa</p>
   <ul class="footer-links">
     <li><a href="#programme">Programme</a></li>
-    <li><a href="#funders">Funders</a></li>
+    <li><a href="#funding">Funders</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2025 BridgeEd · Teacher Digital Training Programme · South Africa</div>
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
