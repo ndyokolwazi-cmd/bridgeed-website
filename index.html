@@ -769,7 +769,10 @@
       </div>
     </div>
     <div class="contact-form">
-      <form action="mailto:lwazi@betheproject.co.za" method="POST" enctype="text/plain">
+      <form id="contact-form">
+        <input type="hidden" name="access_key" value="9f2edde4-c265-48ee-9268-6884ae193e50">
+        <input type="hidden" name="subject" value="New enquiry from BridgeEd website">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name *</label>
@@ -803,6 +806,7 @@
           <textarea id="message" name="message" placeholder="Share a bit of context about how you would like to get involved..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Send Message →</button>
+        <p id="form-status" style="margin-top:1rem; font-size:0.9rem; display:none;"></p>
       </form>
     </div>
   </div>
@@ -831,6 +835,47 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = contactForm.querySelector('.btn-submit');
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    formStatus.style.display = 'none';
+
+    const formData = new FormData(contactForm);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.success) {
+          formStatus.textContent = 'Thank you — your message has been sent. We will respond within 24 hours.';
+          formStatus.style.color = 'var(--teal)';
+          contactForm.reset();
+        } else {
+          formStatus.textContent = 'Something went wrong sending your message. Please email lwazi@betheproject.co.za directly.';
+          formStatus.style.color = '#b3261e';
+        }
+        formStatus.style.display = 'block';
+      })
+      .catch(() => {
+        formStatus.textContent = 'Something went wrong sending your message. Please email lwazi@betheproject.co.za directly.';
+        formStatus.style.color = '#b3261e';
+        formStatus.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      });
+  });
 </script>
 </body>
 </html>
